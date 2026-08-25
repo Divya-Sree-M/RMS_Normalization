@@ -41,7 +41,8 @@ The custom CUDA implementation maintains strict mathematical alignment with stan
 
 ## File Structure
 
-* **`rms_norm.cu`**: The main C++/CUDA implementation containing the fused global reduction kernels, thread-block reductions, static shared memory setups, and the benchmarking loop.
+* **`
+rms_norm_c++_final.cu`**: The main C++/CUDA implementation containing the fused global reduction kernels, thread-block reductions, static shared memory setups, and the benchmarking loop.
 * **`elementwise_ops.cu`**: Optimized parallel implementations for element-wise tensor additions, multiplications, and activation functions.
 * **`rms_norm_final.py`**: The PyTorch profiling script utilizing `torch.cuda.Event` wrappers to capture native performance across identical token dimensions.
 
@@ -69,7 +70,8 @@ rmsNormKernel<<<grid, block, 0, compute_stream>>>(d_input, d_output, d_weights, 
 
 ### Compiling the CUDA Binary
 ```bash
-nvcc -O3 -arch=sm_86 -std=c++17 rms_norm.cu -o rms_norm_benchmark
+nvcc -O3 -arch=sm_86 -std=c++17 
+rms_norm_c++_final.cu -o rms_norm_benchmark
 ```
 
 ### Running the Profiles
